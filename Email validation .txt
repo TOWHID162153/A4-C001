@@ -1,0 +1,38 @@
+// ইমেইল ভ্যালিডেশনের জন্য জাভাস্ক্রিপ্ট কোড
+function isValidEmail(email) {
+    // ১. ইমেইলের শুরুতে .-_+@ থাকা যাবে না
+    if (/^[\.-_+@]/.test(email)) {
+        return false;
+    }
+
+    // ২. ইমেইলের মাঝখানে @ থাকতে হবে
+    if (!email.includes('@')) {
+        return false;
+    }
+
+    // ৩. ইমেইলে কোনো স্পেস থাকা যাবে না
+    if (email.includes(' ')) {
+        return false;
+    }
+
+    // ৪. ইমেইলের শেষে .com থাকতে হবে
+    if (!email.endsWith('.com')) {
+        return false;
+    }
+
+    return true;
+}
+
+// টেস্ট
+const emails = [
+    "example@gmail.com",
+    ".example@gmail.com",
+    "example@ gmail.com",
+    "example@gmail",
+    "example@gmail.net",
+    "example@domain.com"
+];
+
+emails.forEach(email => {
+    console.log(`${email}: ${isValidEmail(email)}`);
+});
